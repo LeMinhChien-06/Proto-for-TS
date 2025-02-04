@@ -1,7 +1,7 @@
 /**
  * ví dụ :
- * 
- * 
+ *
+ *
  * const ws = new WebSocketClient();
  * ws.connect("ws://localhost:8081");
  * let message1 : Message1 = { id: 1, name: "Nguyen Van A" };
@@ -25,42 +25,40 @@
  * ws.onError((error) => {
  *     console.log("🚨 Lỗi kết nối:", error)
  * });
- * 
+ *
  */
 
 export interface WebSocketClient {
-
-    /**
-     * Truyền vào url của server để kết nối
-     * @param url 
-     */
-    connect(url: string): void;
-    /**
-     * Gửi message lên server
-     * @param id : id của message
-     * @param message : message của message
-     */
-    send(id: number, message: any): void;
-    /**
-     * Nhận message từ server
-     * @param id : id của message
-     * @param callback : hàm xử lý message, dữ liệu của message (object) sẽ được truyền vào hàm callback
-     */
-    onMessage<T>(id: number, callback: (message: T) => void): void;
-    /**
-     * Hàm xử lý khi kết nối thành công
-     * @param callback : hàm xử lý khi kết nối thành công
-     */
-    onConnect(callback: () => void): void;
-    /**
-     * Hàm xử lý khi kết nối đóng
-     * @param callback : hàm xử lý khi kết nối đóng
-     */
-    onClose(callback: () => void): void;
-    /**
-     * Hàm xử lý khi có lỗi xảy ra
-     * @param callback : hàm xử lý khi có lỗi xảy ra
-     */
-    onError(callback: (error: Error) => void): void;
-
+  /**
+   * Truyền vào url của server để kết nối
+   * @param url
+   */
+  connect(url: string): void;
+  /**
+   * Gửi message lên server
+   * @param id : id của message
+   * @param message : message của message
+   */
+  send(id: number, message: any): void;
+  /**
+   * Nhận message từ server
+   * @param id : id của message
+   * @param callback : hàm xử lý message, dữ liệu của message (object) sẽ được truyền vào hàm callback
+   */
+  onMessage<T>(id: number, callback: (message: T) => void): void;
+  /**
+   * Hàm xử lý khi kết nối thành công
+   * @param callback : hàm xử lý khi kết nối thành công
+   */
+  onConnect(callback: () => void): void;
+  /**
+   * Hàm xử lý khi kết nối đóng
+   * @param callback : hàm xử lý khi kết nối đóng
+   */
+  onClose(callback: () => void): void;
+  /**
+   * Hàm xử lý khi có lỗi xảy ra
+   * @param callback : hàm xử lý khi có lỗi xảy ra
+   */
+  onError(callback: (error: any) => void): void;
 }
