@@ -3,7 +3,7 @@ import * as fs from "fs";
 import { execSync } from "child_process";
 
 // Đường dẫn tới thư mục chứa file .proto và thư mục output cho mã TypeScript sinh ra
-const protoDir: string = path.join(__dirname, "../protos");
+const protoDir: string = path.join(__dirname, "../src/protos");
 const outputDir: string = path.join(__dirname, "../src/generated");
 
 // Hàm sinh mã TypeScript từ tất cả các file .proto
