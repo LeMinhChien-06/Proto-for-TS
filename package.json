@@ -1,0 +1,26 @@
+{
+  "name": "proto-for-ts",
+  "version": "1.0.0",
+  "description": "Dự án tự động sinh mã TypeScript từ file .proto",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "protobufjs": "^7.4.0",
+    "readline-sync": "^1.4.10",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/ws": "^8.5.14",
+    "ts-node": "^10.9.2",
+    "ts-proto": "^2.6.1",
+    "typescript": "^5.7.3"
+  }
+}
