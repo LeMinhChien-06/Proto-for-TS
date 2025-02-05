@@ -1,34 +1,29 @@
-import WebSocket from "ws";
-import { loadMessages } from "../proto_loader";
-const wss = new WebSocket.Server({ port: 8081 });
+import WebSocket, { WebSocketServer } from "ws";
+
+const wss = new WebSocketServer({ port: 8081 });
 
 wss.on("connection", (ws) => {
-  console.log("🔗 Client kết nối WebSocket");
+  console.log("📡 Client đã kết nối.");
 
-  ws.on("message", (data: Buffer) => {
-    try {
-      // **Tự động xác định loại message**
-      for (const [messageType, protoType] of Object.entries(loadMessages)) {
-        try {
-          const decoded = protoType.decode(new Uint8Array(data));
-          console.log(`Received message of type ${messageType}:`, decoded);
+  ws.on("message", (message) => {
+    // Tin nhắn được nhận là dạng Buffer, nên cần chuyển thành string bằng message.toString(), rồi parse thành JSON.
+    const { id, data, messageType } = JSON.parse(message.toString());
+    console.log(
+      `📩 Nhận message từ client (ID: ${id}, Type: ${messageType})`,
+      data
+    );
 
-          // **Gửi phản hồi với dữ liệu đã xử lý**
-          const response = protoType.create(decoded);
-          ws.send(protoType.encode(response).finish());
-          return;
-        } catch (err) {
-          continue;
-        }
-      }
-
-      console.log("Unknown message format received.");
-    } catch (error) {
-      console.error("Error processing message:", error);
-    }
+    // Giả lập phản hồi bằng cách gửi lại dữ liệu nhận được
+    ws.send(JSON.stringify({ id, data, messageType }));
   });
 
-  ws.on("close", () => console.log("❌ Client đã ngắt kết nối"));
+  ws.on("close", () => {
+    console.log("🔌 Client đã ngắt kết nối.");
+  });
+
+  ws.on("error", (error) => {
+    console.error("🚨 Lỗi WebSocket:", error);
+  });
 });
 
-console.log("✅ WebSocket Server chạy tại ws://localhost:8081");
+console.log("🚀 WebSocket Server đang chạy tại ws://localhost:8081");

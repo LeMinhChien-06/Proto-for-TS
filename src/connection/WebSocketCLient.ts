@@ -33,13 +33,13 @@ export interface WebSocketClient {
    * Truyền vào url của server để kết nối
    * @param url
    */
-  connect(url: string): void;
+  connect(url: string, protoPaths: string[]): void;
   /**
    * Gửi message lên server
    * @param id : id của message
    * @param message : message của message
    */
-  send(id: number, message: any): void;
+  send(id: number, message: any, messageType: string): void;
   /**
    * Nhận message từ server
    * @param id : id của message

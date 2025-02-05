@@ -84,3 +84,15 @@ for (const file of files) {
 #### IV. Vi du demo
 
 - demo: [demo](src\demo\demo.ts)
+
+#### V. CÁCH DÙNG
+
+# Lưu ý: Chỉ cần tạo file proto rồi chạy
+
+- Tạo file .proto
+- Chay file [main](src\main.ts) de tu dong bien dich ma
+
+## WS
+
+- Tạo file .proto
+- Chay file [index](src\index.ts) da co du lieu demo
